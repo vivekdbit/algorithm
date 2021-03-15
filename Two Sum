@@ -22,6 +22,10 @@ Output: [0,1]
 
 ---------------------------------------------------------
 
+############
+###  PHP ###
+############
+
 function twoSum($nums, $target) {
         
     $output = [];
@@ -43,3 +47,24 @@ function twoSum($nums, $target) {
     }        
     return $output;        
 }
+
+####################
+###  Javascript  ###
+###################
+
+function twoSum(nums: number[], target: number): number[] {
+    const numsMap = {};
+        
+    for(let i = 0; i <= nums.length; i++){
+
+       const currentMapValue = numsMap[nums[i]];
+
+        if( currentMapValue >= 0 ){
+            return [currentMapValue, i];
+        } else {
+            const numberToFind = target - nums[i];
+            numsMap[numberToFind] = i;
+        }   
+    }      
+    return null; 
+};
