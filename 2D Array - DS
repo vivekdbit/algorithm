@@ -1,0 +1,49 @@
+Given a  6x6 2D Array, :
+
+1 1 1 0 0 0
+0 1 0 0 0 0
+1 1 1 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+
+An hourglass in  is a subset of values with indices falling in this pattern in arr's graphical representation:
+
+a b c
+  d
+e f g
+
+There are 16 hourglasses in arr. An hourglass sum is the sum of an hourglass' values. 
+Calculate the hourglass sum for every hourglass in arr, then print the maximum hourglass sum. 
+The array will always be 6x6.
+
+############
+###  PHP ###
+############
+
+function hourglassSum($arr) {
+
+    $row = count($arr);
+    $cols = count($arr[0]);
+    
+    // Check the constrains, which has -9 lowest value
+    // If hourglass has all -9's then its total should be -63
+    $sumHourGlass = -63;
+    
+    for($i=0; $i<$row-2; $i++){
+        
+        for($j=0;$j<$cols-2; $j++){
+            
+            $currentHourGlass = $arr[$i][$j] + 
+                                $arr[$i][$j+1] + 
+                                $arr[$i][$j+2] + 
+                                $arr[$i+1][$j+1] + 
+                                $arr[$i+2][$j] + 
+                                $arr[$i+2][$j+1] + 
+                                $arr[$i+2][$j+2];
+            
+            $sumHourGlass = max($sumHourGlass, $currentHourGlass);
+        }
+    }
+    return $sumHourGlass;
+}
